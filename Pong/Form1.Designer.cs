@@ -69,9 +69,9 @@
             // winLabel
             // 
             this.winLabel.BackColor = System.Drawing.Color.Transparent;
-            this.winLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winLabel.ForeColor = System.Drawing.Color.White;
-            this.winLabel.Location = new System.Drawing.Point(133, 202);
+            this.winLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winLabel.ForeColor = System.Drawing.Color.Gold;
+            this.winLabel.Location = new System.Drawing.Point(154, 256);
             this.winLabel.Name = "winLabel";
             this.winLabel.Size = new System.Drawing.Size(301, 23);
             this.winLabel.TabIndex = 2;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace Pong
 {
@@ -17,14 +18,22 @@ namespace Pong
         Random spawnRand = new Random();
 
         //Drawing player 1 player 2 and ball assests
+
         Rectangle player1 = new Rectangle(100, 100, 30, 30);//left
         Rectangle player2 = new Rectangle(300, 250, 30, 30);//right
+
+        Rectangle border = new Rectangle(30, 30, 390, 350); //border
 
         Rectangle speedOrb = new Rectangle(200, 200, 10, 10);//increase speed
         Rectangle doomOrb = new Rectangle(340, 100, 10, 10);//lower other players speed
         Rectangle point = new Rectangle(40, 300, 10, 10); // score
 
-        Rectangle border = new Rectangle(30, 30, 390, 350); //border
+
+
+        // Sounds
+        new SoundPlayer coins = new SoundPlayer(Properties.Resources.coins);
+        new SoundPlayer doomed = new SoundPlayer(Properties.Resources.slowed);
+        new SoundPlayer win = new SoundPlayer(Properties.Resources.win);
 
         //setting the player scores to start at 0
         int player1Score = 0;
@@ -54,7 +63,7 @@ namespace Pong
 
         //setting up the brush
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
-        SolidBrush green = new SolidBrush(Color.Green);
+        SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush yellow = new SolidBrush(Color.Yellow);
         SolidBrush red = new SolidBrush(Color.Red);
         Pen whitePen = new Pen(Color.White, 10);
@@ -62,6 +71,18 @@ namespace Pong
         public Form1()
         {
             InitializeComponent();
+
+            int xRandom = spawnRand.Next(35, border.Width - 5);
+            int yRandom = spawnRand.Next(35, border.Height - 5);
+            point = new Rectangle(xRandom, yRandom, 7, 7);
+
+            xRandom = spawnRand.Next(35, border.Width - 5);
+            yRandom = spawnRand.Next(35, border.Height - 5);
+            speedOrb = new Rectangle(xRandom, yRandom, 7, 7);
+
+            xRandom = spawnRand.Next(35, border.Width - 5);
+            yRandom = spawnRand.Next(35, border.Height - 5);
+            doomOrb = new Rectangle(xRandom, yRandom, 7, 7);
         }
 
         //when key is pressed
@@ -167,9 +188,13 @@ namespace Pong
             {
                 player2.X = player2.X + player2Speed;
             }
+
+            //Player 1 powerups
+
             //Point powerup
             if (player1.IntersectsWith(point))
             {
+                coins.Play();
                 player1Score = player1Score + 1;
                 p1ScoreLabel.Text = $"{player1Score}";
                 int xRandom = spawnRand.Next(35, border.Width - 5);
@@ -189,6 +214,7 @@ namespace Pong
             //Slow powerup
             if (player1.IntersectsWith(doomOrb))
             {
+                doomed.Play();  
                 player2Speed = player2Speed - 1;
                 int xRandom = spawnRand.Next(35, border.Width - 5);
                 int yRandom = spawnRand.Next(35, border.Height - 5);
@@ -196,9 +222,11 @@ namespace Pong
             }
 
             //Player 2 powerups
+
             //Point powerup
             if (player2.IntersectsWith(point))
             {
+                coins.Play();
                 player2Score = player2Score + 1;
                 p2ScoreLabel.Text = $"{player2Score}";
                 int xRandom = spawnRand.Next(35, border.Width - 5);
@@ -219,12 +247,14 @@ namespace Pong
             //Slow powerup
             if (player2.IntersectsWith(doomOrb))
             {
+                doomed.Play();
                 player1Speed = player1Speed - 1;
                 int xRandom = spawnRand.Next(35, border.Width - 5);
                 int yRandom = spawnRand.Next(35, border.Height - 5);
                 doomOrb = new Rectangle(xRandom, yRandom, 7, 7);
             }
             
+            //freeze player 
             if (player1Speed == 0)
             {
                 freeze.Start();
@@ -233,9 +263,23 @@ namespace Pong
             }
             if (player2Speed == 0)
             {
-                freeze.Start();
+                freeze.Start();     
                 player2Speed = 0;
                 player2Freeze = true;
+            }
+
+            //Determine the winner
+            if (player1Score == 5)
+            {
+                gameTimer.Stop();
+                winLabel.Text = "Player 1 Wins";
+                win.Play();
+            }
+            if (player2Score == 5)
+            {
+                gameTimer.Stop();
+                winLabel.Text = "Player 2 Wins";
+                win.Play();
             }
             Refresh();
         }
@@ -244,7 +288,7 @@ namespace Pong
         {
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(blueBrush, player2);
-            e.Graphics.FillRectangle(green, point);
+            e.Graphics.FillRectangle(whiteBrush, point);
             e.Graphics.FillRectangle(yellow, speedOrb);
             e.Graphics.FillRectangle(red, doomOrb);
             e.Graphics.DrawRectangle(whitePen, border);
@@ -254,17 +298,16 @@ namespace Pong
         {
             if (player1Freeze == true)
             {
-                player1Speed = 1;
+                player1Speed = 4;
                 player1Freeze = false;
                 freeze.Stop();
             }
             if (player2Freeze == true) 
             { 
-                player2Speed = 1;
+                player2Speed = 4;
                 player2Freeze = false;
                 freeze.Stop();
             }
- 
         }
     }
 }
