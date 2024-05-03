@@ -76,6 +76,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\speedPowerup.webp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -88,6 +89,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\win.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\character_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\character_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\character_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\character_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slow-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speed-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
