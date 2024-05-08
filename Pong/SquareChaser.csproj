@@ -132,5 +132,8 @@
   <ItemGroup>
     <None Include="Resources\speed-removebg-preview.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speed.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

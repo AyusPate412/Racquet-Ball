@@ -34,6 +34,16 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.winLabel = new System.Windows.Forms.Label();
             this.freeze = new System.Windows.Forms.Timer(this.components);
+            this.infoLabel = new System.Windows.Forms.Label();
+            this.speedOrbLabel = new System.Windows.Forms.Label();
+            this.slowOrbLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SpeedPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // p1ScoreLabel
@@ -82,12 +92,100 @@
             this.freeze.Interval = 1000;
             this.freeze.Tick += new System.EventHandler(this.freeze_Tick);
             // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.infoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.ForeColor = System.Drawing.Color.White;
+            this.infoLabel.Location = new System.Drawing.Point(577, 44);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(247, 25);
+            this.infoLabel.TabIndex = 3;
+            this.infoLabel.Text = "You need 5 coins to win.";
+            // 
+            // speedOrbLabel
+            // 
+            this.speedOrbLabel.AutoSize = true;
+            this.speedOrbLabel.BackColor = System.Drawing.Color.Transparent;
+            this.speedOrbLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedOrbLabel.ForeColor = System.Drawing.Color.White;
+            this.speedOrbLabel.Location = new System.Drawing.Point(667, 111);
+            this.speedOrbLabel.Name = "speedOrbLabel";
+            this.speedOrbLabel.Size = new System.Drawing.Size(117, 25);
+            this.speedOrbLabel.TabIndex = 4;
+            this.speedOrbLabel.Text = "Speed Orb";
+            // 
+            // slowOrbLabel
+            // 
+            this.slowOrbLabel.AutoSize = true;
+            this.slowOrbLabel.BackColor = System.Drawing.Color.Transparent;
+            this.slowOrbLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.slowOrbLabel.ForeColor = System.Drawing.Color.White;
+            this.slowOrbLabel.Location = new System.Drawing.Point(667, 181);
+            this.slowOrbLabel.Name = "slowOrbLabel";
+            this.slowOrbLabel.Size = new System.Drawing.Size(101, 25);
+            this.slowOrbLabel.TabIndex = 5;
+            this.slowOrbLabel.Text = "Slow Orb";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(667, 254);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Coins";
+            // 
+            // SpeedPictureBox
+            // 
+            this.SpeedPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.SpeedPictureBox.BackgroundImage = global::Pong.Properties.Resources.speed;
+            this.SpeedPictureBox.Image = global::Pong.Properties.Resources.speed;
+            this.SpeedPictureBox.InitialImage = null;
+            this.SpeedPictureBox.Location = new System.Drawing.Point(582, 111);
+            this.SpeedPictureBox.Name = "SpeedPictureBox";
+            this.SpeedPictureBox.Size = new System.Drawing.Size(45, 39);
+            this.SpeedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.SpeedPictureBox.TabIndex = 8;
+            this.SpeedPictureBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Pong.Properties.Resources.slow;
+            this.pictureBox1.Location = new System.Drawing.Point(582, 181);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(45, 39);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Pong.Properties.Resources.coin;
+            this.pictureBox3.Location = new System.Drawing.Point(582, 254);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(45, 39);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(600, 500);
+            this.ClientSize = new System.Drawing.Size(863, 500);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.SpeedPictureBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.slowOrbLabel);
+            this.Controls.Add(this.speedOrbLabel);
+            this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.winLabel);
             this.Controls.Add(this.p2ScoreLabel);
             this.Controls.Add(this.p1ScoreLabel);
@@ -100,7 +198,11 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -111,6 +213,13 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label winLabel;
         private System.Windows.Forms.Timer freeze;
+        private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.Label speedOrbLabel;
+        private System.Windows.Forms.Label slowOrbLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox SpeedPictureBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
