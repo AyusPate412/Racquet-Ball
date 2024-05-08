@@ -383,12 +383,12 @@ namespace Pong
                 }
                 else if(point.X < 35)
                 {
-                    yRandom = spawnRand.Next(35, border.Width - 5);
+                    xRandom = spawnRand.Next(50, border.Width - 5);
                     point.X = xRandom;
                 }
                 else if(point.X > border.Width - 5)
                 {
-                    yRandom = spawnRand.Next(35, border.Width - 5);
+                    xRandom = spawnRand.Next(50, border.Width - 5);
                     point.X = xRandom;
                 }
             }
