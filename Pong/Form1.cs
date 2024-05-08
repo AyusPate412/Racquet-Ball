@@ -1,13 +1,26 @@
-﻿using System;
+﻿/*
+* 
+* Ayush Patel
+* ICS3U
+* Mr T
+* May 08, 2023
+* 
+* Square Chaser Summative
+* 
+*/
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace Pong
 {
     public partial class Form1 : Form
     {
+        //Creating Randoms and Stop Watch
         Random spawnRand = new Random();
         Stopwatch OrbMoveStopwatch = new Stopwatch();
 
@@ -20,14 +33,18 @@ namespace Pong
         Image speed = Properties.Resources.speed;
         Image slow = Properties.Resources.slow;
 
+        // Player 1 & 2 Rectangle
+        Rectangle player1 = new Rectangle(100, 100, 40, 40);
+        Rectangle player2 = new Rectangle(300, 250, 30, 30);
 
-        Rectangle player1 = new Rectangle(100, 100, 40, 40);//left
-        Rectangle player2 = new Rectangle(300, 250, 30, 30);//right
-        
-        Rectangle border = new Rectangle(30, 30, 390, 350); //border
+        //border
+        Rectangle border = new Rectangle(30, 30, 390, 350);
 
+        //Powerups
         Rectangle speedOrb = new Rectangle(200, 200, 20, 20);//increase speed
         Rectangle doomOrb = new Rectangle(340, 100, 20, 20);//lower other players speed
+
+        //Coins
         Rectangle point = new Rectangle(40, 300, 20, 20); // score
 
         // Sounds
@@ -65,6 +82,8 @@ namespace Pong
         public Form1()
         {
             InitializeComponent();
+
+            //Spawning Powerups at random locations
             RespawnPointOrb();  
             RespawnSlowOrb();
             RespawnSpeedOrb();
@@ -136,14 +155,14 @@ namespace Pong
                     break;
             }
         }
-
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             PlayerMovement();
             PlayerPowerups();
-            DetermineWinner();
-            
+            DetermineWinner();    
             teleportOrbs();
+            AutomaticPointMovement();
+
             //Freeze Player
             if (player1Speed == 0)
             {
@@ -159,7 +178,6 @@ namespace Pong
             }
             Refresh();
         }
-
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.FillRectangle(transparent, player1);
@@ -174,7 +192,7 @@ namespace Pong
             e.Graphics.DrawImage(player1Images[player1FrameIndex], player1);
             e.Graphics.DrawImage(player2Images[player2FrameIndex], player2);
         }
-
+        //Freeze player for 1 sec
         private void freeze_Tick(object sender, EventArgs e)
         {
             if (player1Freeze == true)
@@ -203,7 +221,6 @@ namespace Pong
                     player1.Y = 15;
                 }
             }
-
             if (sPressed == true && player1.Y < border.Height - 5)
             {
                 player1FrameIndex = 1;
@@ -263,7 +280,6 @@ namespace Pong
                 p1ScoreLabel.Text = $"{player1Score}";
                 RespawnPointOrb();
             }
-
             //speed powerup
             if (player1.IntersectsWith(speedOrb))
             {
@@ -271,7 +287,6 @@ namespace Pong
                 player1Speed = player1Speed + 1;
                 RespawnSpeedOrb();
             }
-
             //Slow powerup
             if (player1.IntersectsWith(doomOrb))
             {
@@ -279,9 +294,7 @@ namespace Pong
                 player2Speed = player2Speed - 1;
                 RespawnSlowOrb();  
             }
-
             //Player 2 powerups
-
             //Point powerup
             if (player2.IntersectsWith(point))
             {
@@ -290,7 +303,6 @@ namespace Pong
                 p2ScoreLabel.Text = $"{player2Score}";
                 RespawnPointOrb();
             }
-
             //speed powerup
             if (player2.IntersectsWith(speedOrb))
             {
@@ -298,7 +310,6 @@ namespace Pong
                 player2Speed = player2Speed + 1;
                 RespawnSpeedOrb();
             }
-
             //Slow powerup
             if (player2.IntersectsWith(doomOrb))
             {
@@ -307,7 +318,6 @@ namespace Pong
                 RespawnSlowOrb();
             }
         }
-
         private void DetermineWinner()
         {
             //Determine the winner
@@ -339,7 +349,6 @@ namespace Pong
             doomOrb.X = spawnRand.Next(35, border.Width - 5);
             doomOrb.Y = spawnRand.Next(35, border.Height - 5);
         }
-
         private void teleportOrbs()
         {
             if (!player1.IntersectsWith(point) && !player2.IntersectsWith(point))
@@ -350,6 +359,37 @@ namespace Pong
                     int yRandom = spawnRand.Next(35, border.Height - 5);
                     point = new Rectangle(xRandom, yRandom, 20, 20);
                     OrbMoveStopwatch.Restart();
+                }
+            }
+        }
+        private void AutomaticPointMovement()
+        {
+            if (point.Y < border.Height -5 && point.Y > 35 && point.X < border.Width -5 && point.X > 35)
+            {
+                int xRandom = spawnRand.Next(-5, 5);
+                int yRandom = spawnRand.Next(-5, 5);
+                point.Y += yRandom;
+                point.X += xRandom;
+
+                if(point.Y > border.Height - 5)
+                {
+                    yRandom = spawnRand.Next(35, border.Height - 5);
+                    point.Y = yRandom;
+                }
+                else if(point.Y < 35)
+                {
+                    yRandom = spawnRand.Next(35, border.Height - 5);
+                    point.Y = yRandom;
+                }
+                else if(point.X < 35)
+                {
+                    yRandom = spawnRand.Next(35, border.Width - 5);
+                    point.X = xRandom;
+                }
+                else if(point.X > border.Width - 5)
+                {
+                    yRandom = spawnRand.Next(35, border.Width - 5);
+                    point.X = xRandom;
                 }
             }
         }
